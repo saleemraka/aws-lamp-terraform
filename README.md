@@ -14,5 +14,33 @@ You can put the region name as varibale in Vars.tf by uncommenting last line. An
 
 Once terraform apply success without issues, copy the db_server_address and web_server_address from the output.
 
+Connect to EC2 instance (web server)
+
+Edit index.php in EC2 instance (web server)
+
+Change <your_aws_mysql_rds_endpoint> with db_server_address from the output
+
+$link = mysql_connect('<your_aws_mysql_rds_endpoint>', 'myuser', 'mypassword');
+
+Save the file and exit
+
+Now, ssh to the ec2 instance of the webserver
+
+## Connect to mysql rds instance via ec2
+mysql -h <db_server_address> -P 3306 -u myuser -p
+#create table and insert data
+USE mydb;
+CREATE TABLE counter (visits int(10) NOT NULL);
+INSERT INTO counter(visits) values(1);
+
+Open web_server_address in the browser , hit refresh and check
+
+LAMP stack successfully deployed in AWS using terraform.
+
+Note: You may need to restart your web server.
+
+Do not forget to destroy LAMP stack using: terraform destroy
+
+
 
 
