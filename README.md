@@ -26,7 +26,8 @@ Save the file and exit
 
 Now, ssh to the ec2 instance of the webserver
 
-## Connect to mysql rds instance via ec2
+Connect to rds instance via ec2
+
 mysql -h <db_server_address> -P 3306 -u myuser -p
 #create table and insert data
 USE mydb;
